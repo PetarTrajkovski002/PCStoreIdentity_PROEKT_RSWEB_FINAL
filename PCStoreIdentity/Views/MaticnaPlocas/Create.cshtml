@@ -1,0 +1,68 @@
+﻿@model PCStoreIdentity.Models.MaticnaPloca
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MaticnaPloca</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Proizvoditel" class="control-label"></label>
+                <input asp-for="Proizvoditel" class="form-control" />
+                <span asp-validation-for="Proizvoditel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipMemorija" class="control-label"></label>
+                <input asp-for="TipMemorija" class="form-control" />
+                <span asp-validation-for="TipMemorija" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxRAMSpeed" class="control-label"></label>
+                <input asp-for="MaxRAMSpeed" class="form-control" />
+                <span asp-validation-for="MaxRAMSpeed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CPUSocket" class="control-label"></label>
+                <input asp-for="CPUSocket" class="form-control" />
+                <span asp-validation-for="CPUSocket" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SlikaUrl" class="control-label"></label>
+                <input asp-for="SlikaUrl" class="form-control" />
+                <span asp-validation-for="SlikaUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DetailsUrl" class="control-label"></label>
+                <input asp-for="DetailsUrl" class="form-control" />
+                <span asp-validation-for="DetailsUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cena" class="control-label"></label>
+                <input asp-for="Cena" class="form-control" />
+                <span asp-validation-for="Cena" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,86 @@
+﻿@model PCStoreIdentity.ViewModels.FilterPSU
+
+@{
+    ViewData["Title"] = "Напојувања";
+}
+
+<h1>Напојувања</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>Пребарување на напојувања</p>
+<form action="" method="get">
+    <label for="model">Модел:</label><br />
+    <input type="text" name="model" id="model" />
+    <br />
+    <label for="power">Моќност:</label><br />
+    <input type="text" name="power" id="power">
+
+    </input>
+    <input type="submit" value="Пребарај" />
+</form>
+@if (Model.brojPSU > 0)
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Модел
+                </th>
+                <th>
+                    Моќност (W)
+                </th>
+                <th>
+                    Рејтинг
+                </th>
+                <th>
+                    Слика
+                </th>
+                <th>
+                    Детали
+                </th>
+                <th>
+                    Цена
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Napojuvanja)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Power)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rating)
+                    </td>
+                    <td>
+                        <img src="@item.SlikaUrl" alt="nema" width="200px" , height="200px">
+                    </td>
+                    <td>
+                        <a href="@item.DetailsUrl">Link for more details</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cena)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <h1>Го нема напојувањето што го барате</h1>
+}

@@ -1,0 +1,89 @@
+﻿@model PCStoreIdentity.ViewModels.FilterDisk
+
+@{
+    ViewData["Title"] = "Дискови";
+}
+
+<h1>Дискови</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>Пребарување на Дискови</p>
+<form action="" method="get">
+    <label for="model">Производител:</label><br />
+    <input type="text" name="model" id="model" />
+    <br />
+    <label for="kapacitet">Капацитет:</label><br />
+    <input type="text" name="kapacitet" id="kapacitet">
+    <br />
+    <label for="tip">Тип на диск:</label><br />
+    <input type="text" name="tip" id="tip">
+    </input>
+    <input type="submit" value="Пребарај" />
+</form>
+@if (Model.brojDisk > 0)
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Модел
+                </th>
+                <th>
+                    Капацитет (GB)
+                </th>
+                <th>
+                    Тип
+                </th>
+                <th>
+                    Слика
+                </th>
+                <th>
+                    Детали
+                </th>
+                <th>
+                    Цена
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Diskovi)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Kapacitet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tip)
+                    </td>
+                    <td>
+                        <img src="@item.SlikaUrl" alt="nema" width="200px" , height="200px">
+                    </td>
+                    <td>
+                        <a href="@item.DetailsUrl">Link for more details</a>
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cena)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <h1>Го нема дискот што го барате</h1>
+}

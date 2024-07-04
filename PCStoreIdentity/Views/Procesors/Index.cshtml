@@ -1,0 +1,110 @@
+﻿@model PCStoreIdentity.ViewModels.FilterCPU
+
+@{
+    ViewData["Title"] = "Процесори";
+}
+
+<h1>Процесори</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>Пребарување на процесори</p>
+<form action="" method="get">
+    <label for="proizvoditel">Производител:</label><br />
+    <input type="text" name="proizvoditel" id="proizvoditel" />
+    <br />
+    <label for="model">Модел:</label><br />
+    <input type="text" name="model" id="model">
+
+    </input>
+    <input type="submit" value="Пребарај" />
+</form>
+
+@if (Model.brojCPU > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Производител
+                </th>
+                <th>
+                    Модел
+                </th>
+                <th>
+                    Генерација
+                </th>
+                <th>
+                    Број на Јадра
+                </th>
+                <th>
+                    Број на Нитки
+                </th>
+                <th>
+                    Брзина на процесорот (GHz)
+                </th>
+                <th>
+                    Моќност на процесорот (W)
+                </th>
+                <th>
+                    Детали
+                </th>
+                <th>
+                    Слика
+                </th>
+                <th>
+                    Цена во денари
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Procesori)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Proizvoditel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Generation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cores)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Threads)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Speed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Power)
+                    </td>
+                    <td>
+                        <a href="@item.DetailsUrl">Link for more details</a>
+                    </td>
+                    <td>
+                        <img src="@item.SlikaUrl" alt="nema" width="200px" , height="200px">
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cena)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1>Го нема процесорот што го баравте</h1>
+}
+

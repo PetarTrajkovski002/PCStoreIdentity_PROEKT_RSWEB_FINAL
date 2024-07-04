@@ -1,0 +1,99 @@
+﻿@model PCStoreIdentity.ViewModels.FilterRAM
+
+@{
+    ViewData["Title"] = "RAM мемории";
+}
+
+<h1>RAM мемории</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>Пребарување на RAM мемории</p>
+<form action="" method="get">
+    <label for="proizvoditel">Производител:</label><br />
+    <input type="text" name="proizvoditel" id="proizvoditel" />
+    <br />
+    <label for="tip">Тип:</label><br />
+    <input type="text" name="tip" id="tip">
+    <br />
+    <label for="kapacitet">Големина:</label><br />
+    <input type="text" name="kapacitet" id="kapacitet">
+    </input>
+    <input type="submit" value="Пребарај" />
+</form>
+@if (Model.brojRAM > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Производител
+                </th>
+                <th>
+                    Модел
+                </th>
+                <th>
+                    Тип
+                </th>
+                <th>
+                    Капацитет (GB)
+                </th>
+                <th>
+                    Брзина (MHz)
+                </th>
+                <th>
+                    Линк за детали
+                </th>
+                <th>
+                    Слика
+                </th>
+                <th>
+                    Цена во денари
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.RAMs)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Proizvoditel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tip)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Kapacitet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Speed)
+                    </td>
+                    <td>
+                        <a href="@item.DetailsUrl">Link for more details</a>
+                    </td>
+                    <td>
+                        <img src="@item.SlikaUrl" alt="nema" width="200px" , height="200px">
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cena)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <h1>Ја нема RAM плочката што ја барате</h1>
+}

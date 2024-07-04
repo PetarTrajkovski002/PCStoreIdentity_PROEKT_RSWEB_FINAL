@@ -1,0 +1,80 @@
+﻿@model PCStoreIdentity.ViewModels.FilterCases
+
+@{
+    ViewData["Title"] = "Куќишта";
+}
+
+<h1>Куќишта</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>Пребарување на куќишта</p>
+<form action="" method="get">
+    <label for="model">Модел:</label><br />
+    <input type="text" name="model" id="model" />
+    <br />
+    <label for="ff">Максимална големина на матична плоча:</label><br />
+    <input type="text" name="ff" id="ff">
+
+    </input>
+    <input type="submit" value="Пребарај" />
+</form>
+@if (Model.brojCases > 0)
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Модел
+                </th>
+                <th>
+                    Form Factor
+                </th>
+                <th>
+                    Слика
+                </th>
+                <th>
+                    Детали
+                </th>
+                <th>
+                    Цена
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Cases)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FormFactor)
+                    </td>
+                    <td>
+                        <img src="@item.SlikaUrl" alt="nema" width="200px" , height="200px">
+                    </td>
+                    <td>
+                        <a href="@item.DetailsUrl">Link for more details</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cena)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <h1>Го нема куќиштето што го барате</h1>
+}

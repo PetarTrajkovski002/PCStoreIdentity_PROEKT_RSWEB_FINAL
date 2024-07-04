@@ -1,0 +1,99 @@
+﻿@model PCStoreIdentity.ViewModels.FilterMotherboard
+
+@{
+    ViewData["Title"] = "Матични плочи";
+}
+
+<h1>Матични плочи</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>Пребарување на Матични Плочи</p>
+<form action="" method="get">
+    <label for="proizvoditel">Производител:</label><br />
+    <input type="text" name="proizvoditel" id="proizvoditel" />
+    <br />
+    <label for="model">Модел:</label><br />
+    <input type="text" name="model" id="model">
+    <br />
+    <label for="tipmemorija">Тип на меморија:</label><br />
+    <input type="text" name="tipmemorija" id="tipmemorija">
+    </input>
+    <input type="submit" value="Пребарај" />
+</form>
+@if (Model.brojPloci > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Производител
+                </th>
+                <th>
+                    Модел
+                </th>
+                <th>
+                    Тип на меморија
+                </th>
+                <th>
+                    Максимална брзина на RAM меморија (GHz)
+                </th>
+                <th>
+                    Лежиште за процесор
+                </th>
+                <th>
+                    Слика
+                </th>
+                <th>
+                    Детали
+                </th>
+                <th>
+                    Цена во Денари
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Ploci)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Proizvoditel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipMemorija)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaxRAMSpeed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CPUSocket)
+                    </td>
+                    <td>
+                        <img src="@item.SlikaUrl" alt="nema" width="200px" , height="200px">
+                    </td>
+                    <td>
+                        <a href="@item.DetailsUrl">Link for more details</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cena)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <h1>Ја нема матичната плоча која ја барате</h1>
+}

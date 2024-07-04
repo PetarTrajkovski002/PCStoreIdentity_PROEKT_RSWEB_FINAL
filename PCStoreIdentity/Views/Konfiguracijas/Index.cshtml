@@ -1,0 +1,83 @@
+﻿@model IEnumerable<PCStoreIdentity.Models.Konfiguracija>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Korisnik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CPU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Memorija)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GPU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SSD)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Case)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PSU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cooler)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Korisnik.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CPU.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MB.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Memorija.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GPU.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SSD.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Case.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PSU.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cooler.Model)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,79 @@
+﻿@model PCStoreIdentity.ViewModels.FilterCooler
+
+@{
+    ViewData["Title"] = "Кулери";
+}
+
+<h1>Кулери</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>Пребарување на ладилници за процесори</p>
+<form action="" method="get">
+    <label for="model">Модел:</label><br />
+    <input type="text" name="model" id="model" />
+    <br />
+    <label for="tdp">Моќност на ладење:</label><br />
+    <input type="text" name="tdp" id="tdp">
+
+    </input>
+    <input type="submit" value="Пребарај" />
+</form>
+@if (Model.brojCoolers > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Модел
+                </th>
+                <th>
+                    Moќност при ладење
+                </th>
+                <th>
+                    Детали
+                </th>
+                <th>
+                    Слика
+                </th>
+                <th>
+                    Цена
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Coolers)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TDP)
+                    </td>
+                    <td>
+                        <a href="@item.DetailsUrl">Link for more details</a>
+                    </td>
+                    <td>
+                        <img src="@item.SlikaUrl" alt="nema" width="200px" , height="200px">
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cena)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <h1>Го нема ладилникот кој го барате</h1>
+}

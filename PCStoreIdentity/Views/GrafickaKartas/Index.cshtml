@@ -1,0 +1,111 @@
+﻿@model PCStoreIdentity.ViewModels.FilterGPU
+
+@{
+    ViewData["Title"] = "Графички карти";
+}
+
+<h1>Графички карти</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>Пребарување на Графички карти</p>
+<form action="" method="get">
+    <label for="proizvoditel">Производител:</label><br />
+    <input type="text" name="proizvoditel" id="proizvoditel" />
+    <br />
+    <label for="model">Модел:</label><br />
+    <input type="text" name="model" id="model">
+    <br />
+    <label for="vram">Количина на меморија:</label><br />
+    <input type="text" name="vram" id="vram">
+    </input>
+    <input type="submit" value="Пребарај" />
+</form>
+@if (Model.brojGPU > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Производител
+                </th>
+                <th>
+                    Модел
+                </th>
+                <th>
+                    Тип на меморја
+                </th>
+                <th>
+                    Капацитет на видео меморија (GB)
+                </th>
+                <th>
+                    Core Clock
+                </th>
+                <th>
+                    Memory Clock
+                </th>
+                <th>
+                    Работна моќност
+                </th>
+                <th>
+                    Слика
+                </th>
+                <th>
+                    Детали
+                </th>
+                <th>
+                    цена
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.GPUs)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Proizvoditel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipMemorija)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VRAM)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CoreClock)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MemoryClock)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Power)
+                    </td>
+                    <td>
+                        <img src="@item.SlikaUrl" alt="nema" width="200px" , height="200px">
+                    </td>
+                    <td>
+                        <a href="@item.DetailsUrl">Link for more details</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cena)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1>Ја нема графичката карта што ја барате</h1>
+}
+

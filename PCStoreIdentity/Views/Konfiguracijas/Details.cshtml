@@ -1,0 +1,108 @@
+﻿@model PCStoreIdentity.ViewModels.VMKonfiguracija
+
+@{
+    ViewData["Title"] = "Details";
+}
+@{
+    int vkupno = 0;
+    vkupno = vkupno +
+
+             Model.CPU.Cena +
+             Model.MB.Cena +
+             Model.RAM.Cena +
+             Model.Disk.Cena +
+             Model.Case.Cena +
+             Model.PSU.Cena +
+             Model.Cooler.Cena +
+             Model.GPU.Cena;
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Konfiguracija</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Korisnik)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Korisnik.UserName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CPU)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CPU.Model)
+            <img src="@Model.CPU.SlikaUrl" , alt="nema slika" , width="100px" , height="100px" />
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MB)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MB.Model)
+            <img src="@Model.MB.SlikaUrl" , alt="nema slika" , width="100px" , height="100px" />
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RAM)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RAM.Kapacitet)
+            <img src="@Model.RAM.SlikaUrl" , alt="nema slika" , width="100px" , height="100px" />
+
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.GPU)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GPU.Model)
+            <img src="@Model.GPU.SlikaUrl" , alt="nema slika" , width="100px" , height="100px" />
+
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Disk)
+
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Disk.Model)
+            <img src="@Model.Disk.SlikaUrl" , alt="nema slika" , width="100px" , height="100px" />
+
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Case)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Case.Model)
+            <img src="@Model.Case.SlikaUrl" , alt="nema slika" , width="100px" , height="100px" />
+
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PSU)
+
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PSU.Model)
+            <img src="@Model.PSU.SlikaUrl" , alt="nema slika" , width="100px" , height="100px" />
+
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cooler)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cooler.Model)
+            <img src="@Model.Cooler.SlikaUrl" , alt="nema slika" , width="100px" , height="100px" />
+
+        </dd>
+        <dt class="col-sm-2">
+            Вкупна Цена
+        </dt>
+        <dd class = "col-sm-10">
+            @vkupno денари;
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.konfiguracija.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
